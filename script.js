@@ -46,9 +46,9 @@ function createHeart(){
 
         heartPoints.push({
 
-            x:centerX+x*15,
+            x:centerX+x*22,
 
-            y:centerY+y*15
+            y:centerY+y*22
 
         });
 
@@ -106,11 +106,11 @@ class Word{
 
 
                 this.x += 
-                (this.target.x-this.x)*0.04;
+                (this.target.x-this.x)*0.035;
 
 
                 this.y +=
-                (this.target.y-this.y)*0.04;
+                (this.target.y-this.y)*0.035;
 
 
             }
@@ -255,7 +255,7 @@ function animate(){
     if(mode==="flow"){
 
 
-        flow+=0.4;
+        flow+=0.15;
 
 
     }

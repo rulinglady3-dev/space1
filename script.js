@@ -7,37 +7,43 @@ canvas.height = window.innerHeight;
 
 const text = "I love you";
 
-const fontSize = 22;
-
 let mode = "rain";
 
+let showYu = false;
 
 let words = [];
 
 let heartPoints = [];
 
+let centerX;
+let centerY;
 
 
-// kalp noktalarını oluştur
+
 function createHeart(){
 
-    heartPoints = [];
+    heartPoints=[];
 
-    for(let t = 0; t < Math.PI * 2; t += 0.15){
+    centerX = canvas.width/2;
+    centerY = canvas.height/2;
 
-        let x = 16 * Math.sin(t)**3;
 
-        let y = -(13 * Math.cos(t)
-        -5 * Math.cos(2*t)
-        -2 * Math.cos(3*t)
+    for(let t=0;t<Math.PI*2;t+=0.12){
+
+        let x = 16*Math.pow(Math.sin(t),3);
+
+        let y =
+        -(13*Math.cos(t)
+        -5*Math.cos(2*t)
+        -2*Math.cos(3*t)
         -Math.cos(4*t));
 
 
         heartPoints.push({
 
-            x: canvas.width/2 + x*20,
+            x:centerX+x*15,
 
-            y: canvas.height/2 + y*20
+            y:centerY+y*15
 
         });
 
@@ -47,20 +53,28 @@ function createHeart(){
 
 
 
-
 class Word{
 
 
     constructor(x,y){
 
+
         this.x=x;
 
         this.y=y;
 
-        this.speed=5+Math.random()*5;
+
+        this.speed=4+Math.random()*5;
 
 
         this.target=null;
+
+
+        this.angle=Math.random()*Math.PI*2;
+
+
+        this.radius=230+Math.random()*80;
+
 
     }
 
@@ -75,9 +89,29 @@ class Word{
             this.y+=this.speed;
 
 
-            if(this.y>canvas.height+30){
+            if(this.y>canvas.height+40){
 
-                this.y=-30;
+                this.y=-40;
+
+            }
+
+        }
+
+
+
+        else if(mode==="forming"){
+
+
+            if(this.target){
+
+
+                this.x +=
+                (this.target.x-this.x)*0.035;
+
+
+                this.y +=
+                (this.target.y-this.y)*0.035;
+
 
             }
 
@@ -86,18 +120,21 @@ class Word{
 
 
 
-        else{
+        else if(mode==="orbit"){
 
 
-            if(this.target){
+            this.angle+=0.01;
 
 
-                this.x += (this.target.x-this.x)*0.05;
+            this.x =
+            centerX+
+            Math.cos(this.angle)*this.radius;
 
-                this.y += (this.target.y-this.y)*0.05;
 
+            this.y =
+            centerY+
+            Math.sin(this.angle)*this.radius;
 
-            }
 
         }
 
@@ -110,7 +147,7 @@ class Word{
     draw(){
 
 
-        ctx.font=`bold ${fontSize}px Arial`;
+        ctx.font="bold 22px Arial";
 
         ctx.fillStyle="#ff69b4";
 
@@ -130,7 +167,8 @@ class Word{
 
 
 
-function createRain(){
+
+function createWords(){
 
 
     words=[];
@@ -159,9 +197,9 @@ function createRain(){
 
 
 
-createRain();
-
 createHeart();
+
+createWords();
 
 
 
@@ -180,13 +218,16 @@ function animate(){
     );
 
 
+
     words.forEach((word,index)=>{
 
 
-        if(mode==="heart"){
+        if(mode==="forming"){
+
 
             word.target =
             heartPoints[index % heartPoints.length];
+
 
         }
 
@@ -200,11 +241,34 @@ function animate(){
 
 
 
+    if(showYu){
+
+
+        ctx.fillStyle="white";
+
+        ctx.font="bold 70px Arial";
+
+        ctx.textAlign="center";
+
+
+        ctx.fillText(
+            "Yu",
+            centerX,
+            centerY+25
+        );
+
+
+        ctx.textAlign="left";
+
+
+    }
+
+
+
     requestAnimationFrame(animate);
 
+
 }
-
-
 
 
 animate();
@@ -212,22 +276,57 @@ animate();
 
 
 
-// 5 saniye sonra kalbe dönüş
+
+// 7 saniye sonra kalp oluşumu
 
 setTimeout(()=>{
 
-    mode="heart";
+
+    mode="forming";
+
 
 },7000);
 
 
 
 
+
+// kalp oluştuktan sonra dönüş
+
+setTimeout(()=>{
+
+
+    mode="orbit";
+
+
+},12000);
+
+
+
+
+
+// Yu yazısı
+
+setTimeout(()=>{
+
+
+    showYu=true;
+
+
+},16000);
+
+
+
+
+
+
 window.addEventListener("resize",()=>{
+
 
     canvas.width=window.innerWidth;
 
     canvas.height=window.innerHeight;
+
 
     createHeart();
 

@@ -14,7 +14,7 @@ const text = "I love you";
 
 
 
-const fontSize = 22;
+const fontSize = 24;
 
 
 // sütun aralığı
@@ -24,7 +24,7 @@ const columnSpace = 140;
 
 // satır aralığı
 
-const rowSpace = 45;
+const rowSpace = 60;
 
 
 
@@ -51,7 +51,7 @@ class LoveStream{
 
         // hepsi hızlı ama farklı
 
-        this.speed = 8 + Math.random()*8;
+        this.speed = 4 + Math.random()*10;
 
 
 

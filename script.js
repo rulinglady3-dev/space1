@@ -1,28 +1,17 @@
 const canvas = document.getElementById("canvas");
-
 const ctx = canvas.getContext("2d");
 
 
-
 canvas.width = window.innerWidth;
-
 canvas.height = window.innerHeight;
 
 
 
 const text = "I love you";
 
-
-
 const fontSize = 24;
 
-
-// sütun aralığı
-
 const columnSpace = 140;
-
-
-// satır aralığı
 
 const rowSpace = 60;
 
@@ -30,11 +19,9 @@ const rowSpace = 60;
 
 let streams = [];
 
-let columns;
 
 
-
-class LoveStream{
+class Stream {
 
 
     constructor(x){
@@ -43,16 +30,14 @@ class LoveStream{
         this.x = x;
 
 
-        // başlangıç konumu
-
-        this.offset = Math.random() * -800;
+        this.y = Math.random() * -canvas.height;
 
 
+        // belirgin hız farkı
+        this.speed = 5 + Math.random() * 12;
 
-        // hepsi hızlı ama farklı
 
-        this.speed = 4 + Math.random()*10;
-
+        this.gap = rowSpace;
 
 
     }
@@ -62,15 +47,15 @@ class LoveStream{
     update(){
 
 
-        this.offset += this.speed;
+        this.y += this.speed;
 
 
 
-        if(this.offset > rowSpace){
+        if(this.y > canvas.height + 200){
 
+            this.y = -300;
 
-            this.offset = 0;
-
+            this.speed = 5 + Math.random()*12;
 
         }
 
@@ -79,39 +64,25 @@ class LoveStream{
 
 
 
-
     draw(){
 
 
+        ctx.font = `bold ${fontSize}px Arial`;
 
-        ctx.font = 
-        `bold ${fontSize}px Arial`;
-
-
-
-        ctx.fillStyle =
-        "rgba(255,105,180,0.9)";
+        ctx.fillStyle = "pink";
 
 
 
-        // ekran boyunca satırlar
-
-        for(let i=0;i<40;i++){
+        for(let i=0;i<25;i++){
 
 
-            let y = 
-            this.offset + i * rowSpace;
-
+            let y = this.y - i*this.gap;
 
 
             ctx.fillText(
-
                 text,
-
                 this.x,
-
                 y
-
             );
 
 
@@ -127,27 +98,22 @@ class LoveStream{
 
 
 
-function createRain(){
+function create(){
 
 
-    streams = [];
+    streams=[];
 
 
-    columns = Math.ceil(
+    let count = Math.ceil(
         canvas.width / columnSpace
     );
 
 
-
-    for(let i=0;i<columns;i++){
+    for(let i=0;i<count;i++){
 
 
         streams.push(
-
-            new LoveStream(
-                i * columnSpace
-            )
-
+            new Stream(i*columnSpace)
         );
 
 
@@ -158,7 +124,7 @@ function createRain(){
 
 
 
-createRain();
+create();
 
 
 
@@ -167,43 +133,28 @@ createRain();
 function animate(){
 
 
-
-    // iz bırakma
-
-    ctx.fillStyle =
-    "rgba(0,0,0,0.12)";
-
+    ctx.fillStyle="rgba(0,0,0,0.18)";
 
     ctx.fillRect(
-
         0,
-
         0,
-
         canvas.width,
-
         canvas.height
-
     );
-
 
 
 
     streams.forEach(stream=>{
 
-
         stream.update();
 
         stream.draw();
-
 
     });
 
 
 
-
     requestAnimationFrame(animate);
-
 
 
 }
@@ -218,16 +169,15 @@ animate();
 
 
 
-
 window.addEventListener("resize",()=>{
 
 
-    canvas.width = window.innerWidth;
+    canvas.width=window.innerWidth;
 
-    canvas.height = window.innerHeight;
+    canvas.height=window.innerHeight;
 
 
-    createRain();
+    create();
 
 
 });

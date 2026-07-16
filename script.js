@@ -6,62 +6,46 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 
-
 const text = "I love you";
 
 const fontSize = 24;
 
-const columnSpace = 140;
-
-const rowSpace = 60;
-
+const columnGap = 160;
+const rowGap = 55;
 
 
-let streams = [];
+let columns = [];
+let columnCount;
 
 
 
-class Stream {
+class Column {
 
 
     constructor(x){
 
-
         this.x = x;
 
+        this.offset = Math.random() * rowGap;
 
-        this.y = Math.random() * -canvas.height;
-
-
-        // belirgin hız farkı
-        this.speed = 5 + Math.random() * 12;
-
-
-        this.gap = rowSpace;
-
+        // hız farkı belirgin
+        this.speed = 3 + Math.random() * 6;
 
     }
-
 
 
     update(){
 
-
-        this.y += this.speed;
-
+        this.offset += this.speed;
 
 
-        if(this.y > canvas.height + 200){
+        if(this.offset >= rowGap){
 
-            this.y = -300;
-
-            this.speed = 5 + Math.random()*12;
+            this.offset = 0;
 
         }
 
-
     }
-
 
 
     draw(){
@@ -72,11 +56,10 @@ class Stream {
         ctx.fillStyle = "pink";
 
 
+        for(let row = -1; row < Math.ceil(canvas.height / rowGap)+2; row++){
 
-        for(let i=0;i<25;i++){
 
-
-            let y = this.y - i*this.gap;
+            let y = row * rowGap + this.offset;
 
 
             ctx.fillText(
@@ -91,31 +74,25 @@ class Stream {
 
     }
 
-
 }
 
 
 
 
 
-function create(){
+function createColumns(){
 
 
-    streams=[];
+    columns = [];
+
+    columnCount = Math.ceil(canvas.width / columnGap);
 
 
-    let count = Math.ceil(
-        canvas.width / columnSpace
-    );
+    for(let i=0;i<columnCount;i++){
 
-
-    for(let i=0;i<count;i++){
-
-
-        streams.push(
-            new Stream(i*columnSpace)
+        columns.push(
+            new Column(i * columnGap)
         );
-
 
     }
 
@@ -124,8 +101,7 @@ function create(){
 
 
 
-create();
-
+createColumns();
 
 
 
@@ -133,7 +109,7 @@ create();
 function animate(){
 
 
-    ctx.fillStyle="rgba(0,0,0,0.18)";
+    ctx.fillStyle = "rgba(0,0,0,0.25)";
 
     ctx.fillRect(
         0,
@@ -143,24 +119,18 @@ function animate(){
     );
 
 
+    columns.forEach(column=>{
 
-    streams.forEach(stream=>{
+        column.update();
 
-        stream.update();
-
-        stream.draw();
+        column.draw();
 
     });
 
 
-
     requestAnimationFrame(animate);
 
-
 }
-
-
-
 
 
 animate();
@@ -168,16 +138,11 @@ animate();
 
 
 
-
 window.addEventListener("resize",()=>{
 
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-    canvas.width=window.innerWidth;
-
-    canvas.height=window.innerHeight;
-
-
-    create();
-
+    createColumns();
 
 });

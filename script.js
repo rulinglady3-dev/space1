@@ -268,7 +268,7 @@ function animate(){
 
         ctx.fillStyle="white";
 
-        ctx.font="bold 70px Arial";
+        ctx.font="bold 80px Arial";
 
         ctx.textAlign="center";
 

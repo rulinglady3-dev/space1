@@ -380,32 +380,43 @@ window.addEventListener("resize",()=>{
 
 const questions=[
 
-
 {
-text:"Did I make you smile today? 😊",
+text:"Did I make you smile today? ",
+
 gif:"images/smile.gif",
+
 yesGif:"images/smile_yes.gif",
+
 message:"I hope I made you smile 💗",
+
 noType:"jump"
 
 },
 
 
 {
-text:"Do you want to hug me? 🤍",
+text:"Do you want to hug me?",
+
 gif:"images/hug.gif",
+
 yesGif:"images/hug_yes.gif",
+
 message:"A warm hug would be nice ✨",
+
 noType:"run"
 
 },
 
 
 {
-text:"Will you kiss me? 💗",
+text:"Will you kiss me?",
+
 gif:"images/kiss.gif",
+
 yesGif:"images/kiss_yes.gif",
-message:"That made me happy ❤️",
+
+message:"That made me happy",
+
 noType:"teleport"
 
 },
@@ -413,13 +424,16 @@ noType:"teleport"
 
 {
 text:"Do you want to spend more time with me? ✨",
+
 gif:"images/time.gif",
+
 yesGif:"images/time_yes.gif",
+
 message:"Then click the next site I sent you 💌",
+
 noType:"crazy"
 
 }
-
 
 ];
 
@@ -472,8 +486,6 @@ showQuestion();
 }
 
 
-
-
 function showQuestion(){
 
 
@@ -489,6 +501,14 @@ gameGif.src=q.gif;
 gifMessage.textContent="";
 
 
+noBtn.style.left="";
+
+noBtn.style.top="";
+
+
+}
+
+
 noBtn.style.left="auto";
 
 noBtn.style.top="auto";
@@ -497,15 +517,18 @@ noBtn.style.top="auto";
 }
 
 
-
 yesBtn.onclick=function(){
 
 
 let q=questions[questionIndex];
 
 
+// Yes sonrası gif
+
 gameGif.src=q.yesGif;
 
+
+// yazı
 
 gifMessage.textContent=q.message;
 
@@ -515,6 +538,7 @@ setTimeout(()=>{
 
 
 questionIndex++;
+
 
 
 if(questionIndex < questions.length){
@@ -538,12 +562,11 @@ nextScreen.style.display="flex";
 
 
 
-},2500);
+},3000);
 
 
 
 };
-
 
 
 

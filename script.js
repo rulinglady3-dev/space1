@@ -486,80 +486,68 @@ function startGame(){
 function showQuestion(){
 
 
-let q=questions[questionIndex];
+    let q=questions[questionIndex];
 
 
-questionText.textContent=q.text;
+    questionText.textContent=q.text;
 
 
-gameGif.src=q.gif;
+    gameGif.src=q.gif;
 
 
-gifMessage.textContent="";
+    gifMessage.textContent="";
 
 
-noBtn.style.left="";
+    noBtn.style.left="auto";
 
-noBtn.style.top="";
-
-
-}
-
-
-noBtn.style.left="auto";
-
-noBtn.style.top="auto";
+    noBtn.style.top="auto";
 
 
 }
+
 
 
 yesBtn.onclick=function(){
 
 
-let q=questions[questionIndex];
+    let q=questions[questionIndex];
 
 
-// Yes sonrası gif
-
-gameGif.src=q.yesGif;
+    gameGif.src=q.yesGif;
 
 
-// yazı
-
-gifMessage.textContent=q.message;
+    gifMessage.textContent=q.message;
 
 
 
-setTimeout(()=>{
+    setTimeout(()=>{
 
 
-questionIndex++;
+        questionIndex++;
+
+
+        if(questionIndex < questions.length){
+
+
+            showQuestion();
+
+
+        }
+
+        else{
+
+
+            gameScreen.style.display="none";
+
+
+            nextScreen.style.display="flex";
+
+
+        }
 
 
 
-if(questionIndex < questions.length){
-
-
-showQuestion();
-
-
-}
-
-else{
-
-
-gameScreen.style.display="none";
-
-
-nextScreen.style.display="flex";
-
-
-}
-
-
-
-},3000);
+    },3000);
 
 
 

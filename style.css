@@ -21,3 +21,112 @@ canvas{
     display:block;
 
 }
+
+#gameScreen,
+#nextScreen{
+
+    position:absolute;
+
+    inset:0;
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:black;
+
+    color:white;
+
+    text-align:center;
+
+}
+
+
+
+#questionBox{
+
+    width:80%;
+
+}
+
+
+
+#questionText{
+
+    font-family:Georgia;
+
+    font-size:40px;
+
+    color:#ff69b4;
+
+}
+
+
+
+#gameGif{
+
+    width:220px;
+
+    margin:25px;
+
+}
+
+
+
+#gifMessage{
+
+    color:#ffb6c1;
+
+    font-size:25px;
+
+}
+
+
+
+button{
+
+    padding:15px 35px;
+
+    border-radius:30px;
+
+    border:none;
+
+    font-size:22px;
+
+    margin:15px;
+
+}
+
+
+
+#yesBtn{
+
+    background:#ff69b4;
+
+    color:white;
+
+}
+
+
+
+#noBtn{
+
+    background:#555;
+
+    color:white;
+
+    position:absolute;
+
+}
+
+
+
+#nextScreen h1{
+
+    color:#ff69b4;
+
+    font-family:Georgia;
+
+}

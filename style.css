@@ -22,8 +22,13 @@ canvas{
 
 }
 
-#gameScreen,
+#gameScreen{
+    z-index:10;
+}
+
 #nextScreen{
+    z-index:11;
+}
 
     position:absolute;
 

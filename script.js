@@ -359,6 +359,11 @@ setTimeout(()=>{
 
 },16000);
 
+setTimeout(()=>{
+
+    startGame();
+
+},5000);
 
 
 

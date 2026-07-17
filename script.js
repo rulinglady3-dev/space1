@@ -46,9 +46,9 @@ function createHeart(){
 
         heartPoints.push({
 
-            x:centerX+x*22,
+            x:centerX+x*26,
 
-            y:centerY+y*22
+            y:centerY+y*26
 
         });
 
@@ -266,19 +266,46 @@ function animate(){
     if(showYu){
 
 
-        ctx.fillStyle="white";
+       // Yu romantik yazı efekti
 
-        ctx.font="bold 80px Arial";
+let gradient = ctx.createLinearGradient(
+    centerX-80,
+    centerY-50,
+    centerX+80,
+    centerY+50
+);
 
-        ctx.textAlign="center";
+
+gradient.addColorStop(0,"#ff69b4");
+gradient.addColorStop(0.5,"#ff1493");
+gradient.addColorStop(1,"#ffb6c1");
 
 
-        ctx.fillText(
-            "Yu",
-            centerX,
-            centerY+25
-        );
+ctx.fillStyle = gradient;
 
+
+ctx.shadowColor = "#ff69b4";
+ctx.shadowBlur = 25;
+
+
+ctx.font = "bold 90px Georgia";
+
+
+ctx.textAlign="center";
+
+
+ctx.fillText(
+    "Yu",
+    centerX,
+    centerY+30
+);
+
+
+// gölgeyi sıfırla
+
+ctx.shadowBlur = 0;
+
+ctx.textAlign="left";
 
         ctx.textAlign="left";
 

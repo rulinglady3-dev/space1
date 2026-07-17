@@ -44,13 +44,19 @@ function createHeart(){
         -Math.cos(4*t));
 
 
-        heartPoints.push({
+        let scale = Math.min(
+    canvas.width,
+    canvas.height
+) / 30;
 
-            x:centerX+x*26,
 
-            y:centerY+y*26
+heartPoints.push({
 
-        });
+    x:centerX+x*scale,
+
+    y:centerY+y*scale
+
+});
 
     }
 

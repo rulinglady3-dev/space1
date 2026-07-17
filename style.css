@@ -22,17 +22,16 @@ canvas{
 
 }
 
-#gameScreen{
-    z-index:10;
-}
-
+#gameScreen,
 #nextScreen{
-    z-index:11;
-}
 
-    position:absolute;
+    position:fixed;
 
-    inset:0;
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
 
     display:none;
 
@@ -46,8 +45,9 @@ canvas{
 
     text-align:center;
 
-}
+    z-index:20;
 
+}
 
 
 #questionBox{

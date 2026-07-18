@@ -139,3 +139,19 @@ button{
     font-family:Georgia;
 
 }
+
+#noReaction{
+
+    font-size:30px;
+
+    color:#ff69b4;
+
+    font-family:Georgia;
+
+    margin-top:20px;
+
+    opacity:0;
+
+    transition:0.5s;
+
+}

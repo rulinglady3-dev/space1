@@ -462,6 +462,8 @@ document.getElementById("gameGif");
 const gifMessage=
 document.getElementById("gifMessage");
 
+const noReaction =
+document.getElementById("noReaction");
 
 const yesBtn=
 document.getElementById("yesBtn");
@@ -548,6 +550,47 @@ yesBtn.onclick=function(){
 
 
     },4000);
+
+
+
+};
+
+noBtn.onclick=function(){
+
+
+let reactions=[
+
+"Are you sure? 🥺",
+
+"Try again 💗",
+
+"That button is a little shy 😄",
+
+"Maybe choose Yes? ✨"
+
+];
+
+
+let random =
+Math.floor(Math.random()*reactions.length);
+
+
+
+noReaction.textContent =
+reactions[random];
+
+
+noReaction.style.opacity="1";
+
+
+
+setTimeout(()=>{
+
+
+noReaction.style.opacity="0";
+
+
+},2000);
 
 
 
